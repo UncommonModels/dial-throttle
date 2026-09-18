@@ -1,0 +1,27 @@
+{{- /* Renders parts/partslist.csv, which `make site-assets` stages from parts/. */ -}}
+{{- $csv := resources.Get "parts/partslist.csv" -}}
+{{- if not $csv -}}
+  {{- errorf "parts shortcode: assets/parts/partslist.csv is missing (run `make site-assets`)" -}}
+{{- end -}}
+{{- $rows := $csv | transform.Unmarshal -}}
+<table class="parts">
+  <thead>
+    <tr><th>Qty</th><th>Part</th><th>Description</th><th>Digi-Key</th></tr>
+  </thead>
+  <tbody>
+  {{- range after 1 $rows }}
+    {{- $dk := index . 0 | strings.TrimSpace }}
+    {{- $mpn := index . 1 | strings.TrimSpace }}
+    {{- $desc := index . 2 | strings.TrimSpace }}
+    {{- $qty := index . 3 | strings.TrimSpace }}
+    {{- if $mpn }}
+    <tr>
+      <td>{{ $qty }}</td>
+      <td><code>{{ $mpn }}</code></td>
+      <td>{{ $desc }}</td>
+      <td><a href="https://www.digikey.com/en/products/result?keywords={{ $dk | urlquery }}" rel="external">{{ $dk }}</a></td>
+    </tr>
+    {{- end }}
+  {{- end }}
+  </tbody>
+</table>

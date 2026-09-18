@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <article class="prose">
+    <div class="hero">
+      <h1>{{ .Site.Title }}</h1>
+      <p class="lede">{{ .Site.Params.description }}</p>
+      <div class="specrow">
+        <div><span class="k">Board</span><span class="v">{{ .Site.Params.board }}</span><span class="sub">{{ .Site.Params.mcu }}</span></div>
+        <div><span class="k">Protocols</span><span class="v">{{ .Site.Params.protocols }}</span></div>
+        <div><span class="k">Throttle</span><span class="v">4–16 notches</span><span class="sub">speed steps 0–126</span></div>
+        <div><span class="k">Input</span><span class="v">Dial · touch · keypad</span><span class="sub">RFID loco select</span></div>
+      </div>
+    </div>
+    {{ .Content }}
+  </article>
+{{ end }}

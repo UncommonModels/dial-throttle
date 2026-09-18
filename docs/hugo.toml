@@ -1,0 +1,69 @@
+baseURL = 'https://ngpaladi.github.io/dial-throttle/'
+languageCode = 'en-us'
+title = 'Dial Throttle'
+enableGitInfo = false
+
+[params]
+  # Shared Uncommon Models brand layer, published from the org site. Override for
+  # local work against an unreleased brand.css:
+  #   HUGO_PARAMS_BRANDCSS=http://127.0.0.1:4000/css/brand.css hugo server
+  brandCSS = 'https://www.uncommonmodels.com/css/brand.css'
+  description = 'An M5Stack Dial handheld throttle for JMRI WiThrottle and LCC layouts.'
+  repo = 'https://github.com/ngpaladi/dial-throttle'
+  org = 'Uncommon Models'
+  orgURL = 'https://uncommonmodels.com'
+  board = 'M5Stack Dial'
+  mcu = 'ESP32-S3'
+  protocols = 'WiThrottle · LCC'
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
+  style = 'github'
+
+[[menu.main]]
+  name = 'Overview'
+  url = '/'
+  weight = 1
+
+[[menu.main]]
+  name = 'Getting started'
+  url = '/docs/getting-started/'
+  weight = 2
+
+[[menu.main]]
+  name = 'Parts list'
+  url = '/docs/parts/'
+  weight = 3
+
+[[menu.main]]
+  name = 'Using the throttle'
+  url = '/docs/using/'
+  weight = 4
+
+[[menu.main]]
+  name = 'Protocols'
+  url = '/docs/protocols/'
+  weight = 5
+
+[[menu.main]]
+  name = 'Power and battery'
+  url = '/docs/power/'
+  weight = 6
+
+[[menu.main]]
+  name = 'RFID'
+  url = '/docs/rfid/'
+  weight = 7
+
+[[menu.main]]
+  name = 'Serial console'
+  url = '/docs/serial/'
+  weight = 8
+
+[[menu.main]]
+  name = 'Troubleshooting'
+  url = '/docs/troubleshooting/'
+  weight = 9

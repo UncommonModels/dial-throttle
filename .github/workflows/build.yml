@@ -16,13 +16,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.x"
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
 
-      - name: Setup PlatformIO
-        run: pip install platformio
+      - name: Cache Arduino core and libraries
+        uses: actions/cache@v4
+        with:
+          path: ~/.arduino15
+          key: arduino-${{ hashFiles('DialThrottle/sketch.yaml') }}
+
+      - name: Update indexes
+        run: arduino-cli core update-index && arduino-cli lib update-index
 
       - name: Build
-        run: pio run -j1
+        run: make build
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: DialThrottle-firmware
+          path: build/DialThrottle.ino.*.bin

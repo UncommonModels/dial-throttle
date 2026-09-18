@@ -1,5 +1,5 @@
 -- Sample schema for RFID -> locomotive lookup used by Dial Throttle.
--- Defaults match include/config.h:
+-- Defaults match DialThrottle/config.h:
 --   DB:    wifithrottle
 --   Table: rfid_loco_map
 --   UID:   rfid_uid

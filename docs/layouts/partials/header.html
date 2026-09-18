@@ -1,0 +1,13 @@
+<header class="title-bar">
+  <div class="title-bar-inner">
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}">
+      <img class="title-logo" src="{{ "img/UncommonModels_with_text.svg" | relURL }}"
+           alt="{{ .Site.Params.org }} logo">
+      <span class="brand-wordmark"><span class="brand-mark">Dial</span><span class="brand-mark alt">Throttle</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="{{ .Site.Params.orgURL }}">{{ .Site.Params.org }}</a>
+      <a class="btn btn-primary" href="{{ .Site.Params.repo }}">GitHub</a>
+    </div>
+  </div>
+</header>
