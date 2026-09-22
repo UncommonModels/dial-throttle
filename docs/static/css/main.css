@@ -166,7 +166,10 @@ blockquote p { margin: 0; }
 
 /* ---- home ---- */
 
+/* The hero pairs the copy and spec cards with the product shot. They sit side by
+   side once the content column has the room, and stack below that. */
 .hero { margin-bottom: 1.75rem; }
+.hero-copy { min-width: 0; }
 .specrow { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.2rem; }
 .specrow div {
   background: var(--panel);
@@ -197,18 +200,30 @@ blockquote p { margin: 0; }
 }
 .specrow .sub { display: block; font-size: 0.74rem; color: var(--text-muted); }
 
-.boardshot {
-  display: block;
-  width: 100%;
-  height: auto;
+/* The render carries its own studio backdrop, so it fills the card edge to edge
+   rather than sitting on the panel colour. */
+.hero-device {
+  margin: 1.5rem 0 0;
+  max-width: 320px;
   background: var(--panel);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 0.7rem;
-  margin: 0.5rem 0 1.75rem;
-  max-height: 540px;
-  object-fit: contain;
+  overflow: hidden;
+}
+.hero-device img { display: block; width: 100%; height: auto; }
+
+/* Two columns only once the content area can give the copy a readable measure
+   next to the shot; the spec cards square up to 2x2 to match its height. */
+@media (min-width: 1000px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 290px);
+    gap: 2rem;
+    align-items: center;
+  }
+  .hero .specrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-device { margin: 0; max-width: none; }
 }
 
 .cardlist { list-style: none; padding: 0; }
