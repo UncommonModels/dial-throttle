@@ -200,30 +200,42 @@ blockquote p { margin: 0; }
 }
 .specrow .sub { display: block; font-size: 0.74rem; color: var(--text-muted); }
 
-/* The render carries its own studio backdrop, so it fills the card edge to edge
-   rather than sitting on the panel colour. */
-.hero-device {
-  margin: 1.5rem 0 0;
-  max-width: 320px;
-  background: var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
+/* The render is transparent, so the device floats on the page rather than
+   sitting on a card. It is centred in a square canvas that is mostly empty, so
+   a portrait window plus object-fit: cover crops the dead space away - and
+   because the device is centred, symmetrically, with no object-position.
+
+   The ratio is the device's own bounds within that canvas, 870x1782 of 2048,
+   which keeps the window tight to the case so the column carries no dead
+   width. Sizing runs off the height, the device being tall and narrow.
+
+   The source render also cast a shadow off to the left. It was stripped from
+   the asset rather than cropped around: black at 40%, it was invisible on this
+   background except where the crop cut it, which left a hard edge. */
+/* Centred while stacked; in the two-column layout the column hugs the image, so
+   this is a no-op there. */
+.hero-device { margin: 1.5rem 0 0; display: flex; justify-content: center; }
+.hero-device img {
+  display: block;
+  height: clamp(300px, 52vw, 400px);
+  width: auto; /* beats the width attribute, so the ratio below sets the width */
+  aspect-ratio: 870 / 1782;
+  object-fit: cover;
 }
-.hero-device img { display: block; width: 100%; height: auto; }
 
 /* Two columns only once the content area can give the copy a readable measure
-   next to the shot; the spec cards square up to 2x2 to match its height. */
+   next to the shot; the spec cards square up to 2x2 to match its height. The
+   shot's column tracks the image, which is sized by its height. */
 @media (min-width: 1000px) {
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 290px);
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 2rem;
     align-items: center;
   }
   .hero .specrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero-device { margin: 0; max-width: none; }
+  .hero-device { margin: 0; }
+  .hero-device img { height: clamp(320px, 26vw, 420px); }
 }
 
 .cardlist { list-style: none; padding: 0; }
