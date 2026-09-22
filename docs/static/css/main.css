@@ -207,11 +207,7 @@ blockquote p { margin: 0; }
 
    The ratio is the device's own bounds within that canvas, 870x1782 of 2048,
    which keeps the window tight to the case so the column carries no dead
-   width. Sizing runs off the height, the device being tall and narrow.
-
-   The source render also cast a shadow off to the left. It was stripped from
-   the asset rather than cropped around: black at 40%, it was invisible on this
-   background except where the crop cut it, which left a hard edge. */
+   width. Sizing runs off the height, the device being tall and narrow. */
 /* Centred while stacked; in the two-column layout the column hugs the image, so
    this is a no-op there. */
 .hero-device { margin: 1.5rem 0 0; display: flex; justify-content: center; }
